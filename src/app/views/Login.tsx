@@ -2,12 +2,6 @@ import { useState } from "react";
 import { useAppStore } from "../store/appStore";
 import { Building2, Eye, EyeOff, LogIn, ArrowLeft } from "lucide-react";
 
-// Demo credentials (from backend seed — npm run seed in /backend)
-const DEMO_ACCOUNTS = [
-  { name: "ហេង ច័ន្ទដារ៉ា", email: "demo@roomrent.kh", password: "demo1234", plan: "PRO" },
-  { name: "សុខ វិទ្យា",      email: "sokha@test.com",   password: "test1234", plan: "FREE" },
-];
-
 interface LoginProps {
   onBack: () => void;
   onRegister: () => void;
@@ -31,14 +25,8 @@ export function Login({ onBack, onRegister }: LoginProps) {
     setLoading(false);
   };
 
-  const fillDemo = (acct: typeof DEMO_ACCOUNTS[0]) => {
-    setEmail(acct.email);
-    setPassword(acct.password);
-    setError("");
-  };
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#e6f2f3] to-[#d0ecef] flex items-center justify-center px-4 py-12">
+    <div className="min-h-screen bg-gradient-to-br from-[#edf7f7] via-[#e3f3f4] to-[#cfecee] flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-md">
         {/* Back */}
         <button
@@ -48,7 +36,7 @@ export function Login({ onBack, onRegister }: LoginProps) {
           <ArrowLeft className="w-4 h-4" /> ត្រឡប់ទំព័រដើម
         </button>
 
-        <div className="bg-white rounded-3xl shadow-xl p-8 border border-gray-100">
+        <div className="bg-white rounded-3xl shadow-[0_28px_70px_rgba(5,91,101,0.18)] p-8 sm:p-10 border border-white/80">
           {/* Logo */}
           <div className="text-center mb-8">
             <div className="w-14 h-14 bg-[#055b65] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
@@ -60,42 +48,14 @@ export function Login({ onBack, onRegister }: LoginProps) {
             </p>
           </div>
 
-          {/* Demo quick-fill (credentials from backend seed) */}
-          <div className="mb-6 p-4 bg-[#e6f2f3] rounded-xl border border-[#cde8eb]">
-            <p className="text-xs font-semibold text-[#044750] mb-2 uppercase tracking-wider">
-              🔑 Demo Accounts — ចុចដើម្បីបំពេញ
-            </p>
-            <div className="space-y-2">
-              {DEMO_ACCOUNTS.map((acct) => (
-                <button
-                  key={acct.email}
-                  onClick={() => fillDemo(acct)}
-                  className="w-full text-left px-3 py-2 rounded-lg bg-white border border-[#9dd0d5] hover:border-[#5bb8bf] transition-colors text-xs"
-                >
-                  <span
-                    className="font-medium text-gray-800"
-                    style={{ fontFamily: "Noto Serif Khmer, sans-serif" }}
-                  >
-                    {acct.name}
-                  </span>
-                  <span className="text-gray-400 mx-2">·</span>
-                  <span className="text-gray-500">{acct.email}</span>
-                  <span className="ml-auto text-[#055b65] float-right font-medium">
-                    {acct.plan}
-                  </span>
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-5">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1.5">
                 អ៊ីម៉ែល (Email)
               </label>
               <input
                 type="email"
-                className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#7ec5ca] focus:border-transparent"
+                className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50/70 text-sm text-gray-900 placeholder:text-gray-400 transition-all focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#055b65]/20 focus:border-[#055b65]"
                 placeholder="your@email.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -110,7 +70,7 @@ export function Login({ onBack, onRegister }: LoginProps) {
               <div className="relative">
                 <input
                   type={showPass ? "text" : "password"}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#7ec5ca] focus:border-transparent pr-10"
+                  className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50/70 text-sm text-gray-900 placeholder:text-gray-400 transition-all focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#055b65]/20 focus:border-[#055b65] pr-10"
                   placeholder="••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}

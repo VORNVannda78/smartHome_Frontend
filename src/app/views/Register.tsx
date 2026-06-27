@@ -46,11 +46,16 @@ export function Register({ onBack, onLogin }: RegisterProps) {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#e6f2f3] to-[#d0ecef] flex items-center justify-center px-4 py-12">
-      <div className="w-full max-w-4xl grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+    <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-[#edf7f7] via-[#e3f3f4] to-[#cfecee] flex items-center justify-center px-4 py-12">
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute -left-32 top-24 h-56 w-[34rem] -rotate-12 rounded-[2rem] bg-white/35" />
+        <div className="absolute -right-28 bottom-20 h-48 w-[36rem] rotate-12 rounded-[2rem] bg-[#b8e3e6]/35" />
+      </div>
+
+      <div className="relative z-10 w-full max-w-5xl grid grid-cols-1 lg:grid-cols-2 gap-10 xl:gap-14 items-center">
 
         {/* Left panel */}
-        <div className="hidden lg:block">
+        <div className="hidden lg:block lg:translate-y-5">
           <div className="flex items-center gap-2 mb-8">
             <div className="w-9 h-9 bg-[#055b65] rounded-xl flex items-center justify-center">
               <Building2 className="w-5 h-5 text-white" />
@@ -60,13 +65,13 @@ export function Register({ onBack, onLogin }: RegisterProps) {
             </span>
           </div>
           <h2
-            className="text-gray-900 mb-4 leading-tight"
-            style={{ fontFamily: "Noto Serif Khmer, serif", fontWeight: 700, fontSize: "2rem" }}
+            className="text-gray-900 mb-5"
+            style={{ fontFamily: "Noto Serif Khmer, serif", fontWeight: 700, fontSize: "2.1rem", lineHeight: 1.28 }}
           >
             ចាប់ផ្ដើម<br />គ្រប់គ្រងបាន<br />ខ្ពស់ជាងមុន
           </h2>
           <p
-            className="text-gray-500 mb-8 text-sm"
+            className="text-gray-500 mb-8 text-sm leading-7 max-w-sm"
             style={{ fontFamily: "Noto Serif Khmer, sans-serif" }}
           >
             ចូលរួមជាមួយម្ចាស់ផ្ទះជួលជាង ៥០០ នាក់ ដែលបានប្រើ RoomRentKH
@@ -90,7 +95,7 @@ export function Register({ onBack, onLogin }: RegisterProps) {
             <ArrowLeft className="w-4 h-4" /> ត្រឡប់
           </button>
 
-          <div className="bg-white rounded-3xl shadow-xl p-8 border border-gray-100">
+          <div className="bg-white rounded-3xl shadow-[0_28px_70px_rgba(5,91,101,0.18)] p-8 sm:p-10 border border-white/80">
             <h1 className="font-bold text-gray-900 text-xl mb-1">បង្កើតគណនី</h1>
             <p
               className="text-sm text-gray-400 mb-6"
@@ -99,7 +104,7 @@ export function Register({ onBack, onLogin }: RegisterProps) {
               ឥតគិតថ្លៃ · ចុះឈ្មោះក្នុង ១ នាទី
             </p>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-5">
               {[
                 { label: "ឈ្មោះពេញ (Full Name)",    key: "name",         placeholder: "ហេង ច័ន្ទដារ៉ា", type: "text"  },
                 { label: "ឈ្មោះអគារ / ផ្ទះជួល",    key: "buildingName", placeholder: "អគារ ចំការមន",    type: "text"  },
@@ -114,7 +119,7 @@ export function Register({ onBack, onLogin }: RegisterProps) {
                   </label>
                   <input
                     type={f.type}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#7ec5ca]"
+                    className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50/70 text-sm text-gray-900 placeholder:text-gray-400 transition-all focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#055b65]/20 focus:border-[#055b65]"
                     placeholder={f.placeholder}
                     value={form[f.key as keyof typeof form]}
                     onChange={(e) => set(f.key, e.target.value)}
@@ -134,7 +139,7 @@ export function Register({ onBack, onLogin }: RegisterProps) {
                 <div className="relative">
                   <input
                     type={showPass ? "text" : "password"}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#7ec5ca] pr-10"
+                    className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50/70 text-sm text-gray-900 placeholder:text-gray-400 transition-all focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#055b65]/20 focus:border-[#055b65] pr-10"
                     placeholder="យ៉ាងហោចណាស់ ៦ តួ"
                     value={form.password}
                     onChange={(e) => set("password", e.target.value)}
@@ -159,7 +164,7 @@ export function Register({ onBack, onLogin }: RegisterProps) {
                 </label>
                 <input
                   type="password"
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#7ec5ca]"
+                  className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50/70 text-sm text-gray-900 placeholder:text-gray-400 transition-all focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#055b65]/20 focus:border-[#055b65]"
                   placeholder="••••••••"
                   value={form.confirmPassword}
                   onChange={(e) => set("confirmPassword", e.target.value)}
